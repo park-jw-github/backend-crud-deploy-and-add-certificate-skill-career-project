@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -17,7 +18,9 @@ import java.util.Date;
 @Slf4j
 @Service
 public class TokenProvider {
-    private static final String SECRET_KEY = "NMA8JPctFuna59f5"; // 비밀키. 이후 환경 변수를 통해 관리 예정
+
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     // 사용자 정보를 바탕으로 JWT 토큰 생성
     public String create(UserEntity userEntity) {
@@ -27,7 +30,7 @@ public class TokenProvider {
 
         // 토큰 빌더
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY) // 서명 알고리즘 및 비밀키 설정
+                .signWith(SignatureAlgorithm.HS512, secretKey) // 서명 알고리즘 및 비밀키 설정
                 .setSubject(userEntity.getId()) // 사용자 ID를 주제로 설정
                 .setIssuer("demo app") // 발행자 설정
                 .setIssuedAt(new Date()) // 발행 시간 설정
@@ -38,7 +41,7 @@ public class TokenProvider {
     // 토큰을 검증하고 사용자 ID를 반환
     public String validateAndGetUserId(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(SECRET_KEY) // 비밀키 설정
+                .setSigningKey(secretKey) // 비밀키 설정
                 .parseClaimsJws(token) // 토큰 파싱
                 .getBody(); // 클레임 추출
 
