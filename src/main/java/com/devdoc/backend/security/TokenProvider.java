@@ -18,6 +18,7 @@ public class TokenProvider {
 
     private final String secretKey;
 
+    // 생성자에 @Value 어노테이션을 사용하여 jwt.secret 값을 주입받음
     public TokenProvider(@Value("${jwt.secret}") String secretKey) {
         this.secretKey = secretKey;
     }
