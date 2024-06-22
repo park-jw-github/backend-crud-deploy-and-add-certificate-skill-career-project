@@ -17,7 +17,13 @@ import java.util.Date;
 @Slf4j
 @Service
 public class TokenProvider {
-    private static final String SECRET_KEY = "NMA8JPctFuna59f5"; // 비밀키. 이후 환경 변수를 통해 관리 예정
+
+    private final String SECRET_KEY;
+
+    @Autowired
+    public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+        this.SECRET_KEY = secretKey;
+    }
 
     // 사용자 정보를 바탕으로 JWT 토큰 생성
     public String create(UserEntity userEntity) {
