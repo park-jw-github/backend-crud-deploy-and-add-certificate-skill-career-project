@@ -1,5 +1,6 @@
 package com.devdoc.backend.security;
 
+import com.devdoc.backend.model.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
