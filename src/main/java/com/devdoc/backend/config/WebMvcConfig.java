@@ -14,7 +14,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // 모든 경로에 대해 CORS 설정 적용
-                // 개발환경(localhost) & 배포환경(krampoline) - URL 주소 확인
+                // 개발환경(localhost) & 배포환경(krampoline) - URL 주소 확인....
                 .allowedOrigins("http://localhost:3000", "https://k08142262902ca.user-app.krampoline.com")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS") // 허용할 HTTP 메서드 설정
                 .allowedHeaders("*") // 모든 헤더 허용
