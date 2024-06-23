@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final long MAX_AGE_SECS = 3600; // CORS 설정의 최대 지속 시간 (1시간)
-
+/*
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // 모든 경로에 대해 CORS 설정 적용
@@ -20,5 +20,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders("*") // 모든 헤더 허용
                 .allowCredentials(true) // 인증 정보 허용
                 .maxAge(MAX_AGE_SECS); // 설정된 시간 동안 설정 유지
-    }
+    }*/
 }
